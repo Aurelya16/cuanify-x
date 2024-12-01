@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+
+public class Aaa {
+    static double[] pemasukan = new double[31];
+    static double[] pengeluaran = new double[31];
+    static int hari = 0;
+
+    public static void main(String[] args) {
+        Scanner gg = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("==========   WELCOME   ==========");
+            System.out.println("===........ CUANIFY-X ....... ===");
+            System.out.println("| 1. Tambah Pemasukan           |");
+            System.out.println("| 2. Tambah Pengeluaran         |");
+            System.out.println("| 3. Lihat Sisa Uang            |");
+            System.out.println("| 4. Keluar                     |");
+            System.out.println("=================================");
+            System.out.print("Pilih menu: ");
+           
+            int pilihan = gg.nextInt();
+            gg.nextLine();  
+
+            if (pilihan == 1) {
+                System.out.print("Masukkan jumlah pemasukan: ");
+                double jumlahPemasukan = gg.nextDouble();
+                tambahPemasukan(jumlahPemasukan);
+            } else if (pilihan == 2) {
+                System.out.print("Masukkan jumlah pengeluaran: ");
+                double jumlahPengeluaran = gg.nextDouble();
+                tambahPengeluaran(jumlahPengeluaran);
+            } else if (pilihan == 3) {
+                tampilkanSisaUang();
+            } else if (pilihan == 4) {
+                System.out.println("-------    Terima Kasih   -------");
+                System.out.println("=====  Jangan Lupa Hemat!!  =====");
+                break;
+            } else {
+                System.out.println("****** Pilihan Tidak Ada_- ******");
+                System.out.println(" ");
+            }
+        }
+        
+        gg.close();
+    }
+
+    public static void tambahPemasukan(double jumlah) {
+        if (hari < 31) {
+            pemasukan[hari] = jumlah;
+            hari++;
+            System.out.println("Yeay, cuan ditambahkan!");
+            System.out.println(" ");
+        } else {
+            System.out.println("Data pemasukan penuh untuk bulan ini.");
+        }
+    }
+
+    public static void tambahPengeluaran(double jumlah) {
+        if (hari < 31) {
+            pengeluaran[hari] = jumlah;
+            hari++;
+            System.out.println("Ohh, cuan keluar!");
+            System.out.println(" ");
+        } else {
+            System.out.println("Data pengeluaran penuh untuk bulan ini.");
+        }
+    }
+
+    public static void tampilkanSisaUang() {
+        double totalPemasukan = 0; 
+        double totalPengeluaran = 0;
+
+        for (int i = 0; i < hari; i++) {
+            totalPemasukan = totalPemasukan + pemasukan[i];
+            totalPengeluaran = totalPengeluaran + pengeluaran[i];
+        }
+
+        double sisaUang = totalPemasukan - totalPengeluaran;
+        System.out.println("Total Pemasukan: Rp " + totalPemasukan);
+        System.out.println("Total Pengeluaran: Rp " + totalPengeluaran);
+        System.out.println("Sisa Uang: Rp " + sisaUang);
+        System.out.println(" ");
+    }
+}
